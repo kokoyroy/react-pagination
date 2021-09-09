@@ -10,11 +10,15 @@ function App() {
   const [postsPerPage, setPostsPerPage] = useState(10);
 
   const fetchPosts = async () => {
-    setLoading(true);
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-    const posts = await response.json();
-    setPosts(posts);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      const posts = await response.json();
+      setPosts(posts);
+      setLoading(false);
+    } catch(err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
